@@ -8,6 +8,7 @@ function MiApi() {
   const [displayedCharacters, setDisplayedCharacters] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
 
+//   Solicitud y captura de información para su almacenamiento 
   useEffect(() => {
     fetch('https://rickandmortyapi.com/api/character')
       .then((response) => response.json())
@@ -16,7 +17,7 @@ function MiApi() {
         setSortedCharacters(data.results);
       });
   }, []);
-
+// busqueda de personajes especificos al escribir se actualiza el campo y desencadena useEffect para filtrar los personajes
   useEffect(() => {
     const filteredCharacters = characters.filter((character) =>
       character.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -24,6 +25,7 @@ function MiApi() {
     setSortedCharacters(filteredCharacters);
   }, [searchTerm, characters]);
 
+// paginacion 
   useEffect(() => {
     const startIndex = (currentPage - 1) * 9;
     const endIndex = startIndex + 9;
