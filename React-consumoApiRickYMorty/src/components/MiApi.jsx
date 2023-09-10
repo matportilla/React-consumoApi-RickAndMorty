@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import CharacterList from './CharacterList';
+import Buscador from './Buscador';
 
 function MiApi() {
   const [characters, setCharacters] = useState([]);
@@ -45,14 +46,8 @@ function MiApi() {
 
   return (
     <div className="App">
-      <input
-        className='m-4'
-        type="text"
-        placeholder="Search characters"
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-      />
-      <button className='btn btn-primary' onClick={handleSort}>Ordenar A/Z</button>
+      <Buscador searchTerm={searchTerm} onSearchChange={(e) => setSearchTerm(e.target.value)} />
+      <button className='btn btn-primary mb-4' onClick={handleSort}>Ordenar A/Z</button>
       <CharacterList
         characters={displayedCharacters}
         handlePageChange={handlePageChange}
